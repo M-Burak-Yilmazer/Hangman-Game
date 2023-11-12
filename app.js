@@ -265,7 +265,7 @@ let hintText = "";
 let guess = "";
 let guessArray = [];
 let remain = 6;
-let score = remain;
+let knowncount = localStorage.getItem("bilinen") || 0;
 let number = 0;
 let clicked = [];
 let correctedlength = 0;
@@ -277,7 +277,8 @@ guessArray = guess.split("");
 console.log(guessArray);
 
 document.querySelector(".remain").textContent = remain;
-document.querySelector(".score").textContent = score;
+document.querySelector(".score").textContent = knowncount;
+
 document.querySelector(".hint--text").textContent = `Hint: ${hintText}`;
 
 for (let index = 0; index < guess.length; index++) {
@@ -317,6 +318,9 @@ document.querySelectorAll(".box").forEach((item) =>
           correctedlength++;
         }
         if (correctedlength == guessArray.length) {
+          knowncount++;
+          localStorage.setItem("bilinen", knowncount);
+
           setTimeout(() => {
             return Swal.fire({
               title: "Congrats! You Won",
