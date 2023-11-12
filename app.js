@@ -318,18 +318,23 @@ document.querySelectorAll(".box").forEach((item) =>
         }
         if (correctedlength == guessArray.length) {
           setTimeout(() => {
-            Swal.fire({
+            return Swal.fire({
               title: "Congrats! You Won",
               text: `Your Word is:  ${guess.toUpperCase()}`,
               imageUrl: "./abstract/victory.gif",
               imageWidth: 400,
               imageHeight: 200,
               imageAlt: "Custom image",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Play Again",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
             });
           }, 300);
-          setTimeout(() => {
-            location.reload();
-          }, 3000);
         }
       } else {
         e.target.style.backgroundColor = "red";
@@ -355,11 +360,16 @@ document.querySelectorAll(".box").forEach((item) =>
               imageWidth: 400,
               imageHeight: 200,
               imageAlt: "Custom image",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Play Again",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
             });
-          }, 300);
-          setTimeout(() => {
-            location.reload();
-          }, 3000);
+          }, 700);
         }
       }
     }
